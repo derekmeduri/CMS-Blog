@@ -1,8 +1,10 @@
 const Sequelize = require("sequelize");
+//enable access to env variables
 require("dotenv").config();
 
 let sequelize;
 
+//environment variables to connect to db
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
