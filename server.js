@@ -17,6 +17,7 @@ const hbs = exphbs.create({ helpers });
 const sesh = {
   secret: "",
   cookie: {
+    //kills after 10 mins (time in milliseconds)
     maxage: 600000,
     httpOnly: true,
     secure: false,
