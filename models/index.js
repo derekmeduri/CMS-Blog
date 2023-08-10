@@ -2,7 +2,7 @@ const Post = require("./Post");
 const Comment = require("./Comment");
 const User = require("./User");
 
-//user can make many posts (one to many) p
+//user can make many posts (one to many)
 User.hasMany(Post, {
   foreignKey: "user_id",
 });
