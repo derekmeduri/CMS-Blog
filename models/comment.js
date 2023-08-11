@@ -28,9 +28,6 @@ Comment.init(
         key: "id",
         onDelete: "CASCADE",
       },
-      validate: {
-        is: /^\d+$/,
-      },
     },
     post_id: {
       type: DataTypes.INTEGER,

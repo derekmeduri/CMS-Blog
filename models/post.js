@@ -33,9 +33,6 @@ Post.init(
         unique: true,
         onDelete: "CASCADE",
       },
-      validate: {
-        is: /^\d+$/,
-      },
     },
     post_id: {
       type: DataTypes.INTEGER,
