@@ -38,3 +38,35 @@ router.get("/dashboard", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//get single post on dashboard
+router.get("/dashboard/:postId", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.postId, {
+      include: [
+        {
+          model: User,
+          attributes: ["username", "email"],
+        },
+      ],
+    });
+
+    if (!postData) {
+      return res.status(404).json({ error: "No Post found" });
+    }
+    const users = postData.get({ plain: true });
+
+    //render handlebars dashboard
+    res.render("dashboard", {
+      users,
+      logged_in: req.session.logged_in,
+      logged_in_id: req.session.logged_in_id,
+      //current url
+      url: req.url,
+      //update blog post
+      upatingBlog: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
