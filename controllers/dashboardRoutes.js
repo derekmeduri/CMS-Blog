@@ -70,3 +70,5 @@ router.get("/dashboard/:postId", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//post details
