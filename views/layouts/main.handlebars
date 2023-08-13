@@ -5,26 +5,29 @@
     <title>Tech Blog</title>
 </head>
 
-<body>
+<header>
     <nav>
         <ul>
+              {{#if logged_in}}
             <li>Homepage</li>
             <li>Dashboard</li>
-            {{#if logged_in}}
             <li>Log Out</li>
             {{#else}}
+            <li>Homepage</li>
             <li>Login</li>
             <li>Sign Up</li>
             {{/if}}
         </ul>
     </nav>
+    </header>
+    <body>
     <main>
         {{{body}}}
     </main>
+
     {{#if logged_in}}
-    <script src="/"></script>
+    <script src="/public/js/logout.js"></script>
     {{/if}}
 </body>
-
 
 </html>
