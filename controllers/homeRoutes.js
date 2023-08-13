@@ -5,22 +5,34 @@ const sequelize = require("../config/connection");
 //direct user to homepage with posts if there are any
 router.get("/", async (req, res) => {
   try {
+    //find post and include attributes from post model
     const postData = await Post.findAll({
-      //order by descending date
-      order: [["post_date", "DESC"]],
+      attributes: [
+        "id",
+        "post_title",
+        "post_content",
+        "post_id",
+        "user_id",
+        "created_at",
+      ],
       include: [
         {
-          model: User,
-          atrributes: ["username", "email"],
+          model: Comment,
+          attributes: [
+            "id",
+            "comment_content",
+            "post_id",
+            "user_id",
+            "created_at",
+          ],
+          include: {
+            model: User,
+            atrributes: ["username", "email"],
+          },
         },
         {
-          model: Comment,
-          include: [
-            {
-              model: User,
-              attributes: ["username", "email"],
-            },
-          ],
+          model: User,
+          attributes: ["username", "email"],
         },
       ],
     });
@@ -31,11 +43,6 @@ router.get("/", async (req, res) => {
       //blog posts
       posts,
       logged_in: req.session.logged_in,
-      //logged in session id
-      logged_in_id: req.session.logged_in_id,
-      //current url
-      url: req.url,
-      postId: req.params.postId,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -48,6 +55,8 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
+  //render handlebars login
+  res.render("login");
 });
 
 //sign up
@@ -63,14 +72,19 @@ router.get("/signup", (req, res) => {
 router.get("/post/:id", async (req, res) => {
   try {
     const postId = req.params.id;
-    const postData = await Post.findByPk(postId, {
+    const postData = await Post.findOne({
+      where: { id: req.params.id },
+      attributes: ["id", "post_title", "post_content", "created_at"],
       include: [
         {
-          model: User,
-          attributes: ["username", "email"],
-        },
-        {
           model: Comment,
+          attributes: [
+            "id",
+            "comment_content",
+            "post_id",
+            "user_id",
+            "created_at",
+          ],
           include: [
             {
               model: User,
@@ -78,19 +92,22 @@ router.get("/post/:id", async (req, res) => {
             },
           ],
         },
+        {
+          model: User,
+          attributes: ["username", "email"],
+        },
       ],
     });
+    //if no posts found throw error
     if (!postData) {
       return res.status(404).json({ error: "Post not found" });
     }
 
     const post = this.postData.get({ plain: true });
     //render handlebars post
-    res.render("post", {
+    res.render("singlepost", {
       post,
       logged_in: req.session.logged_in,
-      logged_in_id: req.session.logged_in_id,
-      url: req.url,
     });
   } catch (err) {
     res.status(500).json(err);
