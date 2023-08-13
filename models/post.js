@@ -19,11 +19,7 @@ Post.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    post_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
+
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -31,15 +27,6 @@ Post.init(
         model: "user",
         key: "id",
         unique: true,
-        onDelete: "CASCADE",
-      },
-    },
-    post_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "post",
-        key: "id",
         onDelete: "CASCADE",
       },
     },

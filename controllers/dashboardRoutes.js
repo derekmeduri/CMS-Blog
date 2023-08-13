@@ -2,37 +2,40 @@ const router = require("express").Router();
 const { User, Post, Comment } = require("../models");
 const sequelize = require("../config/connection");
 const withAuth = require("../utils/auth");
+const { increment } = require("../models/Post");
 
 //gets dashboard or redirects to login withAuth if they are not authenticated
-router.get("/dashboard", withAuth, async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     //find all posts by user
-    const userData = await User.findAll({
-      attributes: { exclude: ["password"] },
+    const postData = await Post.findAll({
+      attributes: ["id", "post_title", "post_content", "user_id", "created_at"],
       order: [["username", "ASC"]],
       include: [
         {
-          model: Post,
+          model: Comment,
+          attributes: [
+            "id",
+            "comment_content",
+            "post_id",
+            "user_id",
+            "created_at",
+          ],
           include: [
             {
               model: User,
               attributes: ["username", "email"],
             },
           ],
-          where: { user_id: req.session.logged_in_id },
         },
       ],
     });
     //serialize data so template can read it
-    const users = userData.map((user) => user.get({ plain: true }));
+    const posts = postData.map((post) => post.get({ plain: true }));
     //render handlebars dashboard
     res.render("dashboard", {
-      users,
-      logged_in: req.session.logged_in,
-      logged_in_id: req.session.logged_in_id,
-      //current url
-      url: req.url,
-      upatingBlog: false,
+      posts,
+      logged_in: true,
     });
     //catch error and return status 500
   } catch (err) {
@@ -41,35 +44,45 @@ router.get("/dashboard", withAuth, async (req, res) => {
 });
 
 //get single post on dashboard
-router.get("/dashboard/:postId", withAuth, async (req, res) => {
+router.get("edit/:Id", withAuth, async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.postId, {
+    const postData = await Post.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["id", "post_title", "post_content", "user_id", "created_at"],
       include: [
         {
           model: User,
           attributes: ["username", "email"],
         },
+        {
+          model: Comment,
+          attributes: [
+            "id",
+            "comment_content",
+            "post_id",
+            "user_id",
+            "created_at",
+          ],
+          include: {
+            model: User,
+            attributes: ["username", "email"],
+          },
+        },
       ],
     });
-
     if (!postData) {
-      return res.status(404).json({ error: "No Post found" });
+      res.status(404).json({ message: "No posts found." });
+      return;
     }
-    const users = postData.get({ plain: true });
 
-    //render handlebars dashboard
-    res.render("dashboard", {
-      users,
-      logged_in: req.session.logged_in,
-      logged_in_id: req.session.logged_in_id,
-      //current url
-      url: req.url,
-      //update blog post
-      upatingBlog: true,
-    });
+    const post = postData.get({ plain: true });
+    //render handlebars for edit post
+    res.render("editpost", { post, logged_in: true });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//post details
+module.exports = router;
