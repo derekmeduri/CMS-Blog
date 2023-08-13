@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sesh = {
-  secret: env.get("SESSION_SECRET"),
+  secret: process.env.SECRET,
   cookie: {
     //kills after 10 mins (time in milliseconds)
     maxage: 600000,
