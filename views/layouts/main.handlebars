@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Blog</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>Homepage</li>
+            <li>Dashboard</li>
+            {{#if logged_in}}
+            <li>Log Out</li>
+            {{#else}}
+            <li>Login</li>
+            <li>Sign Up</li>
+            {{/if}}
+        </ul>
+    </nav>
+    <main>
+        {{{body}}}
+    </main>
+    {{#if logged_in}}
+    <script src="/"></script>
+    {{/if}}
+</body>
+
+
+</html>
