@@ -23,4 +23,4 @@ async function loginFunction(event) {
 }
 
 //listen for submit button click and run login
-document.querySelector("").addEventListener("submit", loginFunction);
+document.querySelector("login-form").addEventListener("submit", loginFunction);
