@@ -1,0 +1,14 @@
+<div>
+    <header>
+        <div><p>
+            <a href="/post/{{id}}">{{title}}</a></p>
+        </div>
+    </header>
+
+    <div>
+        {{post_content}}
+    </div>
+    <div>
+        <b>{{user.username}}</b> |{{format_date created_at}}| <a href="/post/{{id}}"><{{comments.length}}/a>
+    </div>
+</div>
