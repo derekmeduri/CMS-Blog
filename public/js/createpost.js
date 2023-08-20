@@ -21,4 +21,6 @@ async function newFormHandler(event) {
   }
 }
 //add event listener for submit button on creating new post then run function
-document.querySelector().addEventListener("submit", newFormHandler);
+document
+  .querySelector(".new-post-form")
+  .addEventListener("submit", newFormHandler);
