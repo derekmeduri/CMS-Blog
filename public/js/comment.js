@@ -1,9 +1,14 @@
 async function commentHandler(event) {
   event.preventDefault();
 
-  const comment_content = document.querySelector().value.trim();
-
-  const post_id = [];
+  //get the text from comment body textarea
+  const comment_content = document
+    .querySelector('textarea[name="comment-body"]')
+    .value.trim();
+  //convert url to string and split by backslash to get post id
+  const post_id = wind.location.toString().split("/")[
+    window.location.toString().split("/").length - 1
+  ];
 
   if (comment_content) {
     const response = await fetch("/api/comments", {
@@ -26,4 +31,6 @@ async function commentHandler(event) {
 }
 
 //event listener on comment submit button and run function
-document.querySelector().addEventListener("submit", commentHandler);
+document
+  .querySelector(".comment-form")
+  .addEventListener("submit", commentHandler);
