@@ -26,6 +26,10 @@
 
     node, mysql2, handlebars, express sessions, express, express handlebars, dotenv, bcrypt, sequelize,connect-session-sequelize, run npm i in the CLI. Run node server.js
 
+    ## Links
+
+    [Heroku](https://cmsblog-9902688beb70.herokuapp.com/)
+
     ## Usage
 
     personal use only
