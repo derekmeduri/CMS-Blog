@@ -21,4 +21,4 @@ async function signup(event) {
 }
 
 //add event listener to submit button for signup and run the function
-document.querySelector().addEventListener("submit", signup);
+document.querySelector(".signup-form").addEventListener("submit", signup);

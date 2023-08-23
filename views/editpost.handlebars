@@ -1,7 +1,19 @@
 <div>
     <h2>Edit post:</h2>
     <form class="edit-form">
-    <div></div>
+    <div>
+        <label for="post-title">title:</label>
+        <input class="input" name="post-title" type="text" value="{{post.title}}"/>
+    </div>
+    <div>
+        <label for="post-content">content:</label>
+        <input class="textarea" name="post-content" type="text" value="{{post.post_content}}" />
+    </div>
+    <div>
+        created on {{format_date post.created_at}}
+    </div>
+    <button type="submit">Update post</button>
+    <button type="button">Delete post</button>
     </form>
 </div>
 
