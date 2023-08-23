@@ -6,9 +6,10 @@
     </header>
 
     <div>
-        <p>{{post_content}}</p>
+        <div>{{post_content}}</div>
+    
     </div>
     <div>
-        <b>{{user.username}}</b> |{{format_date created_at}}| <a href="/post/{{id}}"><{{comments.length}}/a>
+        <b>{{user.username}}</b> |{{format_date created_at}}| <a href="/post/{{id}}"> {{comment.length}}</a>
     </div>
 </div>

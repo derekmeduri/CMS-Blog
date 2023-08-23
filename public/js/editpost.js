@@ -24,4 +24,6 @@ async function editFormHandler(event) {
 }
 
 //listen for submit button and run edit function
-document.querySelector().addEventListener("submit", editFormHandler);
+document
+  .querySelector(".edit-form")
+  .addEventListener("submit", editFormHandler);

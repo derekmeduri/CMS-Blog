@@ -2,25 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
     <title>Tech Blog</title>
 </head>
-
+<body>
 <header>
+    <h1>Tech Blog</h1>
     <nav>
-        <ul>
-              {{#if logged_in}}
-            <li>Homepage</li>
-            <li>Dashboard</li>
-            <li>Log Out</li>
-            {{#else}}
-            <li>Homepage</li>
-            <li>Login</li>
-            <li>Sign Up</li>
-            {{/if}}
-        </ul>
+     {{#if logged_in}}
+     <a href="/">Homepage</a>
+     <a href="/dashboard">Dashboard</a>
+     <a href="/dashboard/create">create new post</a>
+     <button id="logout">logout</button>
+     {{else}}
+     <a href="/">Homepage</a>
+     <a href="/login">login</a>
+     {{/if}}
     </nav>
     </header>
-    <body>
+    
+  
     <main>
         {{{body}}}
     </main>
@@ -29,6 +30,15 @@
     <!-- if logged reference logout script to show logout option-->
     <script src="/public/js/logout.js"></script>
     {{/if}}
+
+    <footer>
+        <div>
+        <p>Derek Meduri 2023<br>
+        Any questions: <a href="mailto:derekmeduri@gmail.com">Email</a><br>
+        <a href="https://github.com/derekmeduri">Github</a>
+        </p>
+        </div>
+    </footer>
 </body>
 
 </html>
