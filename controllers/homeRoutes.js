@@ -7,14 +7,7 @@ router.get("/", async (req, res) => {
   try {
     //find post and include attributes from post model
     const postData = await Post.findAll({
-      attributes: [
-        "id",
-        "post_title",
-        "post_content",
-        "post_id",
-        "user_id",
-        "created_at",
-      ],
+      attributes: ["id", "post_title", "post_content", "user_id", "created_at"],
       include: [
         {
           model: Comment,
