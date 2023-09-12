@@ -11,8 +11,6 @@ const helpers = require("./utils/helpers");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ helpers });
-
 const sesh = {
   secret: process.env.SECRET,
   cookie: {
@@ -22,7 +20,7 @@ const sesh = {
     secure: false,
     sameSite: "strict",
   },
-  reseave: false,
+  resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
     db: sequelize,
@@ -30,6 +28,8 @@ const sesh = {
 };
 
 app.use(session(sesh));
+
+const hbs = exphbs.create({ helpers });
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
