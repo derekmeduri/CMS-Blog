@@ -18,7 +18,7 @@ const comment = async (event) => {
     if (response.ok) {
       document.location.reload();
     } else {
-      alert("Comment not added");
+      alert("Unable to add comment at this time");
     }
   }
 };
@@ -34,7 +34,7 @@ const deleteComment = async (event) => {
     if (response.ok) {
       document.location.reload();
     } else {
-      alert("Comment not deleted");
+      alert("Unable to delete comment at this time");
     }
   }
 };
