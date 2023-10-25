@@ -4,9 +4,9 @@ const { User } = require("../../models");
 //create new user for login
 router.post("/", async (req, res) => {
   try {
-    const newUser = await User.create(req, res);
+    const userData = await User.create(req, res);
     //save the session data
-    req.sessionsave(() => {
+    req.session.save(() => {
       req.session.user_id = userData.id;
       req.sessions.logged_in = true;
 
@@ -48,6 +48,16 @@ router.post("/login", async (req, res) => {
       });
     });
   } catch (err) {
+    res.status(404).end();
+  }
+});
+
+router.post("/logout", (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
     res.status(404).end();
   }
 });
