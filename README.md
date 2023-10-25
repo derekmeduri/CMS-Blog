@@ -10,6 +10,8 @@
 
 - - [Deploy Link](#links)
 
+- - [Screenshots](#screenshots)
+
 - - [Usage](#Usage)
 
 - - [Questions](#Questions)
@@ -26,11 +28,13 @@
 
     ## Installation
 
-    node, mysql2, handlebars, express sessions, express, express handlebars, dotenv, bcrypt, sequelize,connect-session-sequelize, run npm i in the CLI. Run node server.js
+    run npm i to make sure all dependencies are installed. You will have to create a .env file with your credentials. An example .env file has been created for you, just remove the 'EXAMPLE" from the file name and save. Then use mysql.server start to start the sever. Use the command npm run start to start run the blog locally or use the deployed heroku link below.
 
     ## Links
 
     [Heroku](https://cmsblog-9902688beb70.herokuapp.com/)
+
+    ## Screenshots
 
     ## Usage
 
