@@ -28,7 +28,11 @@
   "keywords": [
     "blog",
     "node",
-    "handlebars"
+    "handlebars",
+    "normalize css",
+    "tech talk",
+    "sequelize",
+    "express"
   ],
   "author": "Derek Meduri",
   "license": "MIT",
