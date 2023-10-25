@@ -1,36 +1,46 @@
-async function commentHandler(event) {
+const comment = async (event) => {
   event.preventDefault();
 
-  //get the text from comment body textarea
-  const comment_content = document
-    .querySelector('textarea[name="comment-body"]')
-    .value.trim();
-  //convert url to string and split by backslash to get post id
-  const post_id = wind.location.toString().split("/")[
-    window.location.toString().split("/").length - 1
-  ];
+  const comment = document.querySelector("#comment-content").value.trim();
 
-  if (comment_content) {
-    const response = await fetch("/api/comments", {
-      method: "post",
+  if (comment) {
+    console.log(comment);
+    const response = await fetch(`/api/comment/posts`, {
+      method: "POST",
       body: JSON.stringify({
-        post_id,
-        comment_content,
+        post_id: event.target.dataset.id,
+        content: comment,
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
     if (response.ok) {
-      //reload page if comment successfully added
       document.location.reload();
     } else {
-      alert(response.statusText);
+      alert("Comment not added");
     }
   }
-}
+};
 
-//event listener on comment submit button and run function
-document
-  .querySelector(".comment-form")
-  .addEventListener("submit", commentHandler);
+const deleteComment = async (event) => {
+  if (event.target.hasAttribute("data-id")) {
+    const id = event.target.getAttribute("data_id");
+
+    const response = await fetch(`/api/comment/${id}`, {
+      method: "DELTE",
+    });
+
+    if (response.ok) {
+      document.location.reload();
+    } else {
+      alert("Comment not deleted");
+    }
+  }
+};
+
+document.querySelector("#commentForm").addEventListener("submit", comment);
+
+document.querySelectorAll("#deleteButton").forEach((delBtn) => {
+  delBtn.addEventListener("click", deleteComment);
+});
