@@ -1,0 +1,33 @@
+.title-border {
+    border: solid 1px;
+    border-width: 2px;
+    width: 225px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 8px black;
+  }
+  .container.container-fluid {
+    width: 98%;
+  }
+  .card {
+    border: double #021e41 4px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px black;
+  }
+  .card .card-header {
+    background-color: #021e41;
+    color: black
+  }
+  .card h2 {
+    color: #021e41;
+  }
+  p {
+    color: black;
+  }
+  .btn.btn-primary{
+    background-color: #021e41;
+    color: black;
+  }
+  .form-box {
+    border: double #08f0e1 5px;
+    border-radius: 5px;
+  }

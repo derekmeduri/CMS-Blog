@@ -1,7 +1,14 @@
     {{#each posts as |post|}}
 
-    {{> postinfo post}}
+    <div class="card">
+        <div class="card-header d-flex flex-row align-end justify-space-between">
 
+  
+
+    {{> postinfo post}}
+    
+      </div>
+    </div>
     {{else}}
     <h5>There are no posts at this time.</h5>
     {{/each}}

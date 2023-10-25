@@ -5,45 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, intial-scale=1.0">
     <title>Tech Blog</title>
-    <link>
-    <link>
+    <link rel="stylesheet" href="/public/css/normalize.css">
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 
 
 <body>
-<header>
-    <h1>Tech Blog</h1>
-    <nav>
-     {{#if logged_in}}
-     <a href="/">Homepage</a>
-     <a href="/dashboard">Dashboard</a>
-     <a href="/dashboard/create">create new post</a>
-     <button id="logout">logout</button>
-     {{else}}
-     <a href="/">Homepage</a>
-     <a href="/login">login</a>
-     {{/if}}
-    </nav>
-    </header>
-    
-  
-    <main>
-        {{{body}}}
-    </main>
-
-    {{#if logged_in}}
-    <!-- if logged reference logout script to show logout option-->
-    <script src="/public/js/logout.js"></script>
-    {{/if}}
-
-    <footer>
-        <div>
-        <p>Derek Meduri 2023<br>
-        Any questions: <a href="mailto:derekmeduri@gmail.com">Email</a>
-        <a href="https://github.com/derekmeduri">Github</a>
-        </p>
+  <div>
+    <header class="display-flex justify-space-between align-center">
+      <nav class="bg-light w-100">
+        <div class="mx-2 my-3">
+          <div>
+              <a href="/">Home</a> |
+              {{#if logged_in}}
+              <a href="/dashboard">Dashboard</a> |
+              <a href="/" id="logout">Logout</a>
+              {{else}}
+              <a href="/login">Login</a>
+              {{/if}}
+          </div>
+          <div class="my-2">
+            <h2 class="title-border p-1">
+                Tech Blog
+            </h2>
+          </div>
         </div>
+      </nav>
+    </header>
+    <main class="container container-fluid mt-5">
+      {{{ body }}}
+    </main>
+    <footer>
     </footer>
-</body>
+  </div>
 
+  <!-- Render script for logged in users only -->
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+  
+</body>
 </html>
