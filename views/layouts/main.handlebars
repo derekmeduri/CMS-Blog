@@ -11,30 +11,30 @@
 
 
 <body>
-<header>
-    <h1>Tech Blog</h1>
-    <nav>
-     {{#if logged_in}}
-     <a href="/">Homepage</a>
-     <a href="/dashboard">Dashboard</a>
-     <a href="/dashboard/create">create new post</a>
-     <button id="logout">logout</button>
-     {{else}}
-     <a href="/">Homepage</a>
-     <a href="/login">login</a>
+  <div>
+    <header class="display-flex justify-space-between align-center" >
+    <nav class="bg-light w-100">
+      <div class="mx-2 my-3">
+        <div>
+        <a href="/">Homepage</a>
+       {{#if logged_in}}
+     
+        <a href="/dashboard">Dashboard</a>
+       <a href='/' id="logout">logout</a>
+       {{else}}
+       <a href="/login">login</a>
      {{/if}}
+       </div>
+     </div>
     </nav>
     </header>
     
   
-    <main>
+    <main class="container contsiner-fluid mt-5">
         {{{body}}}
     </main>
 
-    {{#if logged_in}}
-    <!-- if logged reference logout script to show logout option-->
-    <script src="/public/js/logout.js"></script>
-    {{/if}}
+   
 
     <footer>
         <div>
@@ -44,6 +44,12 @@
         </p>
         </div>
     </footer>
+    </div>
+
+ {{#if logged_in}}
+    <!-- if logged reference logout script to show logout option-->
+    <script src="/public/js/logout.js"></script>
+    {{/if}}
 </body>
 
 </html>
