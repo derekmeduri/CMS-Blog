@@ -5,6 +5,7 @@ const User = require("./User");
 //user can make many posts (one to many)
 User.hasMany(Post, {
   foreignKey: "user_id",
+  onDelete: "CASCADE",
 });
 //user can make many comments (one to many)
 User.hasMany(Comment, {
