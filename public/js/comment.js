@@ -28,7 +28,7 @@ const deleteComment = async (event) => {
     const id = event.target.getAttribute("data_id");
 
     const response = await fetch(`/api/comment/${id}`, {
-      method: "DELTE",
+      method: "DELETE",
     });
 
     if (response.ok) {
